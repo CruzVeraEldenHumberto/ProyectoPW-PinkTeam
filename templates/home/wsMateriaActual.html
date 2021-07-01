@@ -1,0 +1,35 @@
+{% extends 'base/base2.html' %}
+
+{% block title %}Materias{% endblock title%}
+
+{% block content %}
+<br></br>
+<h3 align="center"> <B>BOLETA DE CALIFICACIONES</B> </h3><HR>
+    <h5 align="left"><button type="reset"><a href="{% url 'home:wsusuario' %}">Regresar</a></button></h5>
+    <table class="table">
+        <thead class="table thead-dark">
+            <th>Materia</th>
+            <th>Horario</th>
+            <th>B1</th>
+            <th>B2</th>
+            <th>B3</th>
+            <th>B4</th>
+            <th>B5</th>
+            <th>Promedio</th>
+            </thead>
+            {% for obj in object_list %}
+            <tr> 
+                <td>{{ obj.nombre_materia }}  </td>
+                <td>{{ obj.horario }}  </td>
+                <td>{{ obj.b1 }}  </td>
+                <td>{{ obj.b2 }}  </td>
+                <td>{{ obj.b3 }}  </td>
+                <td>{{ obj.b4 }}  </td>
+                <td>{{ obj.b5 }}  </td>
+                <td>{{ obj.promedio }}  </td>
+            </tr>
+            {% endfor %}
+    </table>
+{% endblock %}
+{% block buttons%}
+{% endblock %}

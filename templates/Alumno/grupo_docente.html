@@ -1,0 +1,79 @@
+{% extends "base/base2.html" %}
+{% load bootstrap %}
+<!-- /. Aqui va el titulo de la pagina.... si lo dejas vacio no aparecera nada -->
+{% block title%}Grupo{% endblock %}
+<!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
+{% block content %}
+<br></br>
+<h3 align="center"> <B>CONSULTA DE CALIFICACIONES</B> </h3><HR>
+<!-- {% comment %} <table class="table">
+    <h5 align="left"><button type="reset"><a href="{% url 'home:index' %}">Regresar</a></button></h5>
+    <th>APELLIDO NOMBRE  </th>
+    <th>GRADO</th>
+    <th>GRUPO</th>
+    <th>TURNO</th>
+    <th>CORREO</th>
+    <th>DETALLES</th>
+    <th></th>
+
+    {% for object in object_list %}
+        {% if object.titulo_docente == 'pendiente' or  object.titulo_docente == 'NA'%}
+    <tr>
+        <td>{{ object.user.last_name }} {{ object.user.first_name }} </td>
+        <td>{{ object.grado_alumno }}</td>
+        <td>{{ object.grupo.nombre_grupo }}</td>
+        <td>{{ object.grupo.turno }}</td>
+        <td>{{ object.user.email }}</td>
+        <td><a href="{% url 'home:api_alumno' object.pk %}">Detalle</a></td>
+    </tr>
+        {% endif %}
+    {% endfor %}
+</table> {% endcomment %} -->
+
+<div class= "container">
+    <h5 align="left"><button type="reset"><a href="{% url 'home:index' %}">Regresar</a></button></h5>
+    <form method="GET", name = "buscar", value = "{{ request.GET.buscar }}">
+        {{ filter.form|bootstrap }}
+    
+    <button type="submit" class="btn btn-primary">Buscar</button> 
+    </form>
+
+
+    {% comment %} <ul>
+        {% for object in filter.qs %}
+            <li>
+                <a href="{% url 'home:api_alumno' object.pk %}">{{object.curp}}</a>
+            </li>
+        {% endfor %}
+    </ul> {% endcomment %}
+
+    <br></br>
+    <table class="table">
+    
+    <th>CURP  </th>
+    <th>DETALLE</th>
+    {% for object in filter.qs %}
+    <tr>
+        <td>{{ object.curp }}</td>
+        <td><a href="{% url 'home:api_alumno' object.pk %}">Detalle</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+
+{% endblock %}
+
+
+
+<!-- /. Aqui va el boton de logout.... si lo dejas vacio no aparecera nada -->
+{% block logout%}{% endblock %}
+<!-- /. Aqui va el aviso de privacidad.... si lo dejas vacio no aparecera nada -->
+{% block privacy %}
+<H5 align="center">
+    PARA CUALQUIER ACLARACIÓN O DUDA ACERCA DE LA AUTENTIFICACIÓN DE LA PÁGINA, 
+    <BR> INFORMACIÓN DEL PRESENTE O CUALQUIER 
+    INCONVENIENTE CON ESTA PÁGINA WEB, FAVOR DE COMUNICARSE AL ÁREA DE REGISTRO DE LA ADMINISTRACIÓN ESCOLAR. 
+    <br>PARA MÁS INFORMACIÓN COMUNICARSE AL TEL. 6642015219 O AL CORREO: CONTROLESCOLAR@EDUCACIONBC.EDU.MX 
+</H5>
+{% endblock %}

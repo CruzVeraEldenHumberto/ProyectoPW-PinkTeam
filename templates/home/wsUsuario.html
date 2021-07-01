@@ -1,0 +1,26 @@
+{% extends 'base/base2.html' %}
+{% block title %}Usuarios{% endblock title%}
+{% block content %}
+<br></br>
+<h3 align="center"> <B>CONSULTA DE CALIFICACIONES</B> </h3><HR>
+    <h5 align="left"><button type="reset"><a href="{% url 'home:index' %}">Regresar</a></button></h5>
+    <br>
+    <table class="table">
+        <thead class="table thead-dark">
+            <th>Curp</th>
+            <th>Grado</th>
+            <th>Detalle</th>
+            </thead>
+            {% for obj in object_list %}
+            {% if obj.titulo_docente == 'pendiente' or  obj.titulo_docente == 'NA'%}
+            <tr> 
+                <td>{{ obj.curp }}  </td>
+                <td>{{ obj.grado_alumno }}  </td>
+                <td><a href="{% url 'home:wsmateria_actual' obj.id %}">Detalle</a></td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+    </table>    
+{% endblock %}
+{% block buttons%}
+{% endblock %}
